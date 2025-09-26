@@ -1,9 +1,9 @@
 import { GoogleGenAI, Type } from "@google/genai";
 import { Solution } from "../types";
 
-// FIX: Aligned with the guideline to exclusively use `process.env.API_KEY`.
-// The API key MUST be set as an environment variable.
-// Removed hardcoded fallback keys and UI error messages for missing keys.
+// FIX: Corrected API key access to use `process.env.API_KEY` as per guidelines.
+// This resolves the TypeScript error `Property 'env' does not exist on type 'ImportMeta'`
+// and removes the non-compliant UI error message for a missing key.
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 const model = "gemini-2.5-flash";
@@ -61,7 +61,6 @@ export const solveQuestionFromImage = async (base64ImageData: string, mimeType: 
     if (error instanceof SyntaxError) {
         throw new Error("AI 回傳的格式有誤，請稍後再試。");
     }
-    // FIX: Provide a more user-friendly error message.
     throw new Error("呼叫 AI API 時發生錯誤，請檢查您的網路連線或 API 金鑰是否正確。");
   }
 };

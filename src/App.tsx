@@ -1,4 +1,3 @@
-
 import React, { useState, useCallback } from 'react';
 import { Solution } from './types';
 import { solveQuestionFromImage } from './services/geminiService';
@@ -53,7 +52,6 @@ const App: React.FC = () => {
       setSolutions(result);
     } catch (err) {
       console.error(err);
-      // FIX: Improved error handling to display specific error messages from the service.
       if (err instanceof Error) {
         setError(err.message);
       } else {
